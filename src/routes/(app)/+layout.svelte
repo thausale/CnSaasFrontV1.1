@@ -8,6 +8,7 @@
 	import {AppShell, AppBar, Avatar } from "@skeletonlabs/skeleton" 
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
+	import Clock from '$lib/components/Clock.svelte';
 
 	function drawerOpen(){
 		drawerStore.open()
@@ -22,6 +23,7 @@
 	<svelte:fragment slot="header">
 		<AppBar>
 			<svelte:fragment slot="lead">(icon)
+				<Clock />
 
 
 			<button class="md:hidden btn btn-sm mr-4" on:click={drawerOpen} >

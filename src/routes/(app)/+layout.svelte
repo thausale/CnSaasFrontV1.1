@@ -9,10 +9,15 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Clock from '$lib/components/Clock.svelte';
+	import { get } from 'svelte/store';
 
+	import { localStorageUser } from '$lib/components/stores';
+	const {initials} = $localStorageUser
 	function drawerOpen(){
 		drawerStore.open()
 	}
+
+	console.log($localStorageUser.initials)
 </script>
 
 <Drawer>
@@ -22,7 +27,7 @@
 <AppShell slotSidebarLeft="w-0 md:w-52 bg-surface-500/10 ">
 	<svelte:fragment slot="header">
 		<AppBar>
-			<svelte:fragment slot="lead">(icon)
+			<svelte:fragment slot="lead">
 				<Clock />
 
 
@@ -39,10 +44,10 @@
 			</button>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">(actions)
-
-			<Avatar initials="JD" />
+			<Avatar initials={initials} />
 			</svelte:fragment>
-			<svelte:fragment slot="headline">(headline)</svelte:fragment>
+			<!-- TODO: Maybe put the notifications bar in the headline -->
+			<!-- <svelte:fragment slot="headline">(headline)</svelte:fragment> -->
 		</AppBar>
 
 	</svelte:fragment>

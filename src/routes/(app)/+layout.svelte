@@ -9,47 +9,37 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Clock from '$lib/components/Clock.svelte';
+	import HamburgerButton from '$lib/components/HamburgerButton.svelte';
 	import { get } from 'svelte/store';
 
 	import { localStorageUser } from '$lib/components/stores';
 	const {initials} = $localStorageUser
-	function drawerOpen(){
-		drawerStore.open()
-	}
 
-	console.log($localStorageUser.initials)
 </script>
 
 <Drawer>
 	<Navigation/>
 </Drawer>
 
-<AppShell slotSidebarLeft="w-0 md:w-52 bg-surface-500/10 ">
+<AppShell slotSidebarLeft="w-0 md:w-44 bg-surface-500/10 ">
 	<svelte:fragment slot="header">
 		<AppBar>
-			<svelte:fragment slot="lead">
-				<Clock />
+			<svelte:fragment slot="lead"  >
+				<div class="flex flex-col">
 
-
-			<button class="md:hidden btn btn-sm mr-4" on:click={drawerOpen} >
-				<span>
-
-					<svg viewBox="0 0 100 80" class="fill-token w-4 h-4">
-						<rect width="100" height="20"/>
-						<rect y="30" width="100" height="20"/>
-						<rect y="60" width="100" height="20"/>
-						
-					</svg>
-				</span>
-			</button>
+					<Clock />
+					<HamburgerButton />
+				</div>
+				
+				
 			</svelte:fragment>
-			<svelte:fragment slot="trail">(actions)
-			<Avatar initials={initials} />
+			<svelte:fragment slot="trail">
+				<Avatar initials={initials} />
 			</svelte:fragment>
 			<!-- TODO: Maybe put the notifications bar in the headline -->
 			<!-- <svelte:fragment slot="headline">(headline)</svelte:fragment> -->
 		</AppBar>
-
+		
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<Navigation />

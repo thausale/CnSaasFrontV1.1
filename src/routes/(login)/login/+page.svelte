@@ -5,16 +5,31 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 
 	import '../../../app.postcss';
-	import { focusTrap, ProgressRadial } from '@skeletonlabs/skeleton';
+
+	// Environment variables
 	import { PUBLIC_URI } from '$env/static/public';
+
+	// Components import
+	import { focusTrap, ProgressRadial } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
+	import { blur } from "svelte/transition"
+
+	// Store imports
+	import { User } from '$lib/components/stores';
+	import { Token } from '$lib/components/stores';
+	import { get } from 'svelte/store';
 
 	let email = 'admin@admin';
 	let password = 'password';
 	let errorMessage = '';
 	let loading = false;
 
-	console.log(PUBLIC_URI);
+	function setUserData(userInfo){
+		User.update((storeData) =>{
+			return {...storeData,   user: userInfo}
+		})
+	}
+
 
 	async function handleSubmit() {
 		console.log('handleSubmit');
@@ -23,47 +38,64 @@
 		loading = true;
 
 		//Check login info with laravel api
-		// const response = await fetch(`${PUBLIC_URI}/login`, {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json'
-		// 	},
-		// 	body: JSON.stringify({
-		// 		email,
-		// 		password
-		// 	})
-		// });
+		const response = await fetch(`${PUBLIC_URI}/login`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email,
+				password
+			})
+		});
 
-		// const data = await response.json();
+		const data = await response.json();
 
 		//This if launches if the credentials are wrong
-		// if (data.error) {
-		// 	console.log('wrong credentials');
-		// 	errorMessage = data.error;
-		// 	console.log(errorMessage);
-		// 	return;
-		// }
+		if (data.error) {
+			console.log('wrong credentials');
+			errorMessage = data.error;
+			console.log(errorMessage);
+			loading = false;
+			return;
+		}
 
-		//Set userdata in the store
-		// userStore.set(data.user);
+		console.log(data)
 
-		// console.log(userStore.getInfo());
+		// Set userdata in the store
+		User.set(data.user)
+ 		// setUserData(data.user)
 
-		// console.log($user);
-		//This now holds the user's data
-		//TODO:create JWT token from laravel API
+		// set laravel's plain text sanctum token (needed as bearer token)
+		Token.set(data.plainTextToken)
 
-		//TODO:Set JWT in a session cookie
 
-		//TODO:Go to landing page
-		// goto('/');
+		//Go to landing page
+		goto('/');
+
+		loading = false
 	}
 </script>
+
+<style>
+	.error{
+		color: red;
+	}
+	
+	p{
+		min-height: 24px;
+	}
+</style>
 
 <div class="flex items-center justify-center h-screen flex-col">
 	<div class="border p-10 rounded-container-token border-primary-400 w-screen md:w-auto">
 		<h1 class="p-10">Login to cnSaas</h1>
 		<form action="" use:focusTrap={true} on:submit|preventDefault={handleSubmit}>
+			{#if errorMessage}
+				<p class="error" transition:blur >{errorMessage}</p>
+				{:else}
+				 <p></p>
+			{/if}
 			<label class="label">
 				<span>Email</span>
 				<input

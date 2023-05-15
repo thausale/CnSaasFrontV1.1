@@ -4,6 +4,10 @@
     function drawerClose(){
         drawerStore.close()
     }
+
+	import { User } from "./stores";
+	import { Token } from "./stores";
+
 </script>
 
 
@@ -19,7 +23,11 @@
 			</a>
 		</li>
 		<li>
-			<a href="/login" on:click={drawerClose} >
+			<a href="/login" on:click={()=>{
+				localStorage.clear()
+				drawerClose();
+
+			}} >
 				<span class="badge bg-primary-500">💀</span>
 				<span class="flex-auto">Logout</span>
 			</a>

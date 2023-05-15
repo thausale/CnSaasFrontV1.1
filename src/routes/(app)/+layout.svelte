@@ -5,54 +5,41 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	// Most of your app wide CSS should be put in this file
 	import '../../app.postcss';
-	import {AppShell, AppBar, Avatar } from "@skeletonlabs/skeleton" 
+	import { AppShell, AppBar, Avatar } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import Clock from '$lib/components/Clock.svelte';
 	import HamburgerButton from '$lib/components/HamburgerButton.svelte';
-	import { get } from 'svelte/store';
 
 	import { User } from '$lib/components/stores';
 	import { Token } from '$lib/components/stores';
-	import { goto } from '$app/navigation';
 	import { Toast, toastStore } from '@skeletonlabs/skeleton';
-
-	console.log(get(User))
-	const initials = $User.firstName[0] + $User.lastName[0]
-
-function goToProfile(){
-	goto("/profile")
-}
+	const initials = $User.firstName[0] + $User.lastName[0];
 </script>
 
 <Drawer>
-	<Navigation/>
+	<Navigation />
 </Drawer>
 
 <Toast />
 
-
 <AppShell slotSidebarLeft="w-0 md:w-44 bg-surface-500/10 ">
 	<svelte:fragment slot="header">
 		<AppBar>
-			<svelte:fragment slot="lead"  >
+			<svelte:fragment slot="lead">
 				<div class="flex flex-col">
-
 					<Clock />
 					<HamburgerButton />
 				</div>
-				
-				
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<a href="/profile">
-					<Avatar initials={initials} />
+					<Avatar {initials} />
 				</a>
 			</svelte:fragment>
 			<!-- TODO: Maybe put the notifications bar in the headline -->
 			<!-- <svelte:fragment slot="headline">(headline)</svelte:fragment> -->
 		</AppBar>
-		
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<Navigation />

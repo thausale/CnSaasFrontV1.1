@@ -12,14 +12,25 @@
 	import HamburgerButton from '$lib/components/HamburgerButton.svelte';
 	import { get } from 'svelte/store';
 
-	import { localStorageUser } from '$lib/components/stores';
-	const {initials} = $localStorageUser
+	import { User } from '$lib/components/stores';
+	import { Token } from '$lib/components/stores';
+	import { goto } from '$app/navigation';
+	import { Toast, toastStore } from '@skeletonlabs/skeleton';
 
+	console.log(get(User))
+	const initials = $User.firstName[0] + $User.lastName[0]
+
+function goToProfile(){
+	goto("/profile")
+}
 </script>
 
 <Drawer>
 	<Navigation/>
 </Drawer>
+
+<Toast />
+
 
 <AppShell slotSidebarLeft="w-0 md:w-44 bg-surface-500/10 ">
 	<svelte:fragment slot="header">
@@ -34,7 +45,9 @@
 				
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<Avatar initials={initials} />
+				<a href="/profile">
+					<Avatar initials={initials} />
+				</a>
 			</svelte:fragment>
 			<!-- TODO: Maybe put the notifications bar in the headline -->
 			<!-- <svelte:fragment slot="headline">(headline)</svelte:fragment> -->

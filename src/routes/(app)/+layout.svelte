@@ -5,19 +5,33 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	// Most of your app wide CSS should be put in this file
 	import '../../app.postcss';
+
+	// Skeleton components
 	import { AppShell, AppBar, Avatar } from '@skeletonlabs/skeleton';
-	import Navigation from '$lib/components/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
+	import { Toast, toastStore } from '@skeletonlabs/skeleton';
+
+	// Custom components
+	import Navigation from '$lib/components/Navigation.svelte';
 	import Clock from '$lib/components/Clock.svelte';
 	import HamburgerButton from '$lib/components/HamburgerButton.svelte';
 
+	//Stores
 	import { User } from '$lib/components/stores';
 	import { Token } from '$lib/components/stores';
-	import { Toast, toastStore } from '@skeletonlabs/skeleton';
+
+	import { goto } from '$app/navigation';
 	const initials = $User.firstName[0] + $User.lastName[0];
 
 	export let data;
 	const { role } = data;
+	User.set(data.user);
+	// console.log('Userstore', $User);
+
+	//TODO: re-enable redirecting
+	// if (data.status == 401) {
+	// 	goto(data.redirect);
+	// }
 </script>
 
 <Drawer>

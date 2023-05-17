@@ -5,21 +5,8 @@
 		drawerStore.close();
 	}
 
-	import { User } from './stores';
-	import { Token } from './stores';
-	import { onMount } from 'svelte';
-
-	// onMount(async () => {
-	// 	if ($User) {
-	// 		const {
-	// 			role_data: { role: userRole }
-	// 		} = $User;
-	// 		role = userRole;
-	// 	}
-	// });
-
 	export let role;
-	console.log(role);
+	// console.log(role);
 </script>
 
 <nav class="list-nav p-04">

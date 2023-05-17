@@ -6,65 +6,34 @@
 
 	import '../../../app.postcss';
 
-	// Environment variables
+	// // Environment variables
 	import { PUBLIC_URI } from '$env/static/public';
 
-	// Components import
+	// // Components import
 	import { focusTrap, ProgressRadial } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
 	import { blur } from 'svelte/transition';
 
-	// Store imports
+	// // Store imports
 	import { User } from '$lib/components/stores';
 	import { Token } from '$lib/components/stores';
 	import { get } from 'svelte/store';
 	import { apiClient } from '$lib/api/UserApi';
 
 	import { enhance } from '$app/forms';
+
 	export let form;
 	$: console.log('form', form);
 	let email = 'admin@admin';
 	let password = 'password';
-	let errorMessage = '';
 	let loading = false;
-
-	function setUserData(userInfo) {
-		User.update((storeData) => {
-			return { ...storeData, user: userInfo };
-		});
-	}
-
-	async function handleSubmit() {
-		//Remove error message
-		errorMessage = '';
-		loading = true;
-
-		const data = await apiClient.login({ email, password });
-		//This if launches if the credentials are wrong
-		if (data.error) {
-			console.log('wrong credentials');
-			errorMessage = data.error;
-			loading = false;
-			return;
-		}
-
-		// Set user data in the store
-		User.set(data.user);
-		// setUserData(data.user)
-
-		// set laravel's plain text sanctum token (needed as bearer token)
-		// Token.set(data.plainTextToken);
-
-		//Go to landing page
-		goto('/');
-
-		loading = false;
-	}
 
 	if (form?.error) {
 		loading = false;
 	}
 </script>
+
+<h1>test</h1>
 
 <div class="flex items-center justify-center h-screen flex-col">
 	<div class="border p-10 rounded-container-token border-primary-400 w-screen md:w-auto">

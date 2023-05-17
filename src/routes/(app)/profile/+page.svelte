@@ -68,7 +68,7 @@
 					</li>
 					<li>
 						<span>Role:</span>
-						<span class="flex-auto">{role_data.role}</span>
+						<span class="flex-auto">{$User.role}</span>
 					</li>
 					<li>
 						<span>Permissions:</span>

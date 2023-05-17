@@ -8,9 +8,11 @@ export function load({ cookies }) {
 	const session = cookies.get('session');
 
 	try {
-		const claims = jwt.verify(session, PRIVATE_SIGNATURE);
-		console.log(claims);
-		return { role: claims.payload.role_data.role };
+		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
+		const { firstName, lastName, email, role_data, id, company_id } = payload;
+		const user = { firstName, lastName, email, id, company_id, role: role_data.role };
+
+		return { role: payload.role_data.role, user };
 	} catch (error) {
 		return {
 			status: 401,

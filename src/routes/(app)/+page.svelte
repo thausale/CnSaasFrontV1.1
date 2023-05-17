@@ -1,7 +1,10 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script>
 	import { User } from '$lib/components/stores';
-	const id = $User.id;
+	export let data;
+	const { user } = data;
+
+	console.log('page.svelte', $User);
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">

@@ -1,14 +1,15 @@
 import { localStorageStore } from '@skeletonlabs/skeleton';
 
 export const User = localStorageStore('User', {
-	firstName: 'testing this stuff',
+	firstName: '',
 	lastName: '',
-	role: '',
 	initials: '',
 	email: '',
 	permissions: '',
+	company_id: '',
 	user: {},
-	functions: []
+	functions: [],
+	role_data: { role: 'operator' }
 });
 
 export const Token = localStorageStore('Token', {});

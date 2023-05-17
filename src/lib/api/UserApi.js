@@ -37,6 +37,18 @@ class UserApi {
 		return data;
 	}
 
+	async getUsersFromCompany(company_id) {
+		const response = await fetch(`${this.baseURL}/users/company/${company_id}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const data = await response.json();
+		return data;
+	}
+
 	async editUser(field, value) {
 		const id = this.getId();
 

@@ -17,7 +17,7 @@
 	let loading = false;
 
 	const fullName = $User.firstName + ' ' + $User.lastName;
-	const { email, role, permissions } = $User;
+	const { email, role_data, permissions } = $User;
 
 	function submit(field) {
 		return ({ detail: newValue }) => {
@@ -68,7 +68,7 @@
 					</li>
 					<li>
 						<span>Role:</span>
-						<span class="flex-auto">{role}</span>
+						<span class="flex-auto">{role_data.role}</span>
 					</li>
 					<li>
 						<span>Permissions:</span>

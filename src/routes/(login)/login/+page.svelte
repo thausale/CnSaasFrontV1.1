@@ -20,6 +20,9 @@
 	import { get } from 'svelte/store';
 	import { apiClient } from '$lib/api/UserApi';
 
+	import { enhance } from '$app/forms';
+	export let form;
+	$: console.log('form', form);
 	let email = 'admin@admin';
 	let password = 'password';
 	let errorMessage = '';
@@ -45,18 +48,20 @@
 			return;
 		}
 
-		console.log(data);
-
-		// Set userdata in the store
+		// Set user data in the store
 		User.set(data.user);
 		// setUserData(data.user)
 
 		// set laravel's plain text sanctum token (needed as bearer token)
-		Token.set(data.plainTextToken);
+		// Token.set(data.plainTextToken);
 
 		//Go to landing page
 		goto('/');
 
+		loading = false;
+	}
+
+	if (form?.error) {
 		loading = false;
 	}
 </script>
@@ -64,9 +69,15 @@
 <div class="flex items-center justify-center h-screen flex-col">
 	<div class="border p-10 rounded-container-token border-primary-400 w-screen md:w-auto">
 		<h1 class="p-10">Login to cnSaas</h1>
-		<form action="" use:focusTrap={true} on:submit|preventDefault={handleSubmit}>
-			{#if errorMessage}
-				<p class="error" transition:blur>{errorMessage}</p>
+		<form
+			use:enhance
+			method="POST"
+			action="?/login"
+			use:focusTrap={true}
+			on:submit={() => (loading = true)}
+		>
+			{#if form?.error}
+				<p class="error" transition:blur>{form.error}</p>
 			{:else}
 				<p />
 			{/if}
@@ -74,15 +85,22 @@
 				<span>Email</span>
 				<input
 					class="input"
+					name="email"
 					title="Input (text)"
 					type="text"
-					placeholder="Input"
+					placeholder="email"
 					bind:value={email}
 				/>
 			</label>
 			<label class="label">
 				<span>Password</span>
-				<input class="input" type="text" placeholder="Input" bind:value={password} />
+				<input
+					class="input"
+					type="text"
+					name="password"
+					placeholder="password"
+					bind:value={password}
+				/>
 			</label>
 			<button type="submit" class="btn variant-filled-primary mt-5">
 				{#if loading}

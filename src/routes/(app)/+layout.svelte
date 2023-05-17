@@ -15,6 +15,9 @@
 	import { Token } from '$lib/components/stores';
 	import { Toast, toastStore } from '@skeletonlabs/skeleton';
 	const initials = $User.firstName[0] + $User.lastName[0];
+
+	export let data;
+	const { role } = data;
 </script>
 
 <Drawer>
@@ -42,7 +45,7 @@
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
-		<Navigation />
+		<Navigation {role} />
 	</svelte:fragment>
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->

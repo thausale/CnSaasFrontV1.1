@@ -1,8 +1,6 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script>
 	import { User } from '$lib/components/stores';
-	export let data;
-	const { user } = data;
 
 	console.log('page.svelte', $User);
 </script>

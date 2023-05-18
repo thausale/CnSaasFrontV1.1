@@ -10,10 +10,7 @@
 
 	onMount(async () => {
 		//Destructuring variables
-		const {
-			company_id,
-			role_data: { role }
-		} = $User;
+		const { company_id, role } = $User;
 
 		//	Checking if user is an admin
 		if (role !== 'admin') {
@@ -22,12 +19,12 @@
 
 		//	Getting all the users from the company
 		const data = await apiClient.getUsersFromCompany(company_id);
-		console.log(data);
 		users = data.users;
 		loading = false;
 	});
 </script>
 
+<!-- // TODO: UsersAccordion component, with a loading prop -->
 {#if loading}
 	<ProgressBar meter="variant-filled-primary" />
 {:else}

@@ -12,6 +12,7 @@
 	import { Toast, toastStore } from '@skeletonlabs/skeleton';
 
 	// Custom components
+	import Navigation from '$lib/components/Navigation.svelte';
 	import Clock from '$lib/components/Clock.svelte';
 	import HamburgerButton from '$lib/components/HamburgerButton.svelte';
 

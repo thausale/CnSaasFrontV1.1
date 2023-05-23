@@ -36,6 +36,12 @@
 				<span class="flex-auto">Home</span>
 			</a>
 		</li>
+		<li>
+			<a href="/data" on:click={drawerClose}>
+				<span class="badge bg-primary-500">📖</span>
+				<span class="flex-auto">Data</span>
+			</a>
+		</li>
 		{#if role === 'admin'}
 			<li>
 				<a href="/user-management" on:click={drawerClose}>

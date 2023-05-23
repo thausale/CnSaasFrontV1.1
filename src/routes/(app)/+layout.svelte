@@ -35,7 +35,7 @@
 </script>
 
 <Drawer>
-	<Navigation />
+	<Navigation {role} />
 </Drawer>
 
 <Toast />

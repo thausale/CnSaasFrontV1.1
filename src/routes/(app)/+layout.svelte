@@ -21,11 +21,11 @@
 	import { Token } from '$lib/components/stores';
 
 	import { goto } from '$app/navigation';
+	export let data;
+	User.set(data.user);
 	const initials = $User.firstName[0] + $User.lastName[0];
 
-	export let data;
 	const { role } = data;
-	User.set(data.user);
 	// console.log('Userstore', $User);
 
 	//TODO: re-enable redirecting

@@ -8,48 +8,31 @@
 	let loading = false;
 	export let data;
 	const { users } = data;
+	console.log(users);
+
+	import { Table } from '@skeletonlabs/skeleton';
+	import { tableMapperValues } from '@skeletonlabs/skeleton';
+
+	const table = {
+		// A list of heading labels.
+		head: ['firstName', 'lastName', 'role', 'email'],
+		// The data visibly shown in your table body UI.
+		body: tableMapperValues(users, ['firstName', 'lastName', 'role_name', 'email']),
+		// Optional: The data returned when interactive is enabled and a row is clicked.
+		meta: tableMapperValues(users, ['firstName', 'lastName', 'role_name', 'email', 'id']),
+		// Optional: A list of footer labels.
+		foot: ['Total', '', `<code class="code">${users.length}</code>`]
+	};
+
+	function selectionHandler(e) {
+		console.log(e.detail);
+	}
 </script>
 
 <!-- // TODO: UsersAccordion component, with a loading prop -->
 {#if loading}
 	<ProgressBar meter="variant-filled-primary" />
 {:else}
-	<div class=" container mx-auto px-4 py-10 max-w-2xl">
-		<Accordion>
-			{#each users as user}
-				<AccordionItem>
-					<svelte:fragment slot="summary">
-						<h3>{user.firstName} {user.lastName} id: {user.id}</h3>
-					</svelte:fragment>
-
-					<svelte:fragment slot="content">
-						<ul>
-							<li>first name: {user.firstName}</li>
-							<li>last name: {user.lastName}</li>
-							<li>email: {user.email}</li>
-							<li>role: {user.role_name}</li>
-						</ul>
-					</svelte:fragment>
-				</AccordionItem>
-			{/each}
-		</Accordion>
-	</div>
+	<!-- TODO: Add modal when clicked to edit user -->
+	<Table source={table} class=" p-4" interactive="true" on:selected={selectionHandler} />
 {/if}
-
-<!-- 
-			{#if users.length > 0}
-			<Accordion>
-				{#each users as user}
-				<AccordionItem>
-					<svelte:fragment slot="summary">
-					<h3>{user.firstName} {user.lastName}</h3>
-				</svelte:fragment>
-
-				<svelte:fragment slot="content">
-					<h2>help</h2>
-				</svelte:fragment>
-			</AccordionItem>
-		{/each}
-		<AccordionItem />
-	</Accordion>
-{/if} -->

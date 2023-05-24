@@ -13,7 +13,6 @@ export function load({ cookies }) {
 
 	try {
 		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
-		console.log(payload);
 		const { firstName, lastName, email, role_data, id } = payload;
 		const user = { firstName, lastName, email, id, role: role_data.name };
 

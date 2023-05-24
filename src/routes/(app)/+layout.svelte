@@ -10,6 +10,7 @@
 	import { AppShell, AppBar, Avatar, ProgressBar } from '@skeletonlabs/skeleton';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import { Toast, toastStore } from '@skeletonlabs/skeleton';
+	import { LightSwitch } from '@skeletonlabs/skeleton';
 
 	// Custom components
 	import Navigation from '$lib/components/Navigation.svelte';
@@ -27,10 +28,6 @@
 
 	const { role } = data;
 	// console.log('Userstore', $User);
-
-	const initials = $User.firstName[0] + $User.lastName[0];
-
-	const { role } = data;
 </script>
 
 <Drawer>
@@ -49,6 +46,7 @@
 				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
+				<LightSwitch />
 				<a href="/profile">
 					<Avatar {initials} />
 				</a>

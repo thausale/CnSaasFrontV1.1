@@ -13,12 +13,12 @@ export function load({ cookies }) {
 
 	try {
 		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
-		const { firstName, lastName, email, role_data, id, company_id } = payload;
-		const user = { firstName, lastName, email, id, company_id, role: role_data.role };
+		const { firstName, lastName, email, role_data, id } = payload;
+		const user = { firstName, lastName, email, id, role: role_data.name };
 
-		return { role: payload.role_data.role, user };
+		return { role: payload.role_data.name, user };
 	} catch (error) {
-		throw redirect(302, '/login');
+		// throw redirect(302, '/login');
 		//res.status(500).json({ status: 'failed', message: error.message });
 	}
 }

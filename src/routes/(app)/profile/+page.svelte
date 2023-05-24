@@ -2,6 +2,7 @@
 	// Skeleton Components
 	import { Accordion, AccordionItem, Avatar } from '@skeletonlabs/skeleton';
 	import { toastStore } from '@skeletonlabs/skeleton';
+
 	// Stores & Classes
 	import { User } from '$lib/components/stores';
 	import { apiClient } from '$lib/api/UserApi';
@@ -44,6 +45,7 @@
 
 <div class="accordion">
 	<h1>Profile Page</h1>
+
 	<Accordion>
 		<AccordionItem open>
 			<!-- <svelte:fragment slot="lead">(icon)</svelte:fragment> -->
@@ -58,6 +60,7 @@
 
 						<span class="flex-auto">{fullName}</span>
 					</li>
+
 					<li>
 						<span class="editable">Email:</span>
 						{#if loading}

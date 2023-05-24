@@ -6,7 +6,6 @@
 	}
 
 	export let role;
-	// console.log(role);
 </script>
 
 <nav class="list-nav p-04">

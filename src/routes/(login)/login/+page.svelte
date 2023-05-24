@@ -33,8 +33,6 @@
 	}
 </script>
 
-<h1>test</h1>
-
 <div class="flex items-center justify-center h-screen flex-col">
 	<div class="border p-10 rounded-container-token border-primary-400 w-screen md:w-auto">
 		<h1 class="p-10">Login to cnSaas</h1>

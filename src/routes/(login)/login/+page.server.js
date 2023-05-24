@@ -7,7 +7,6 @@ export const actions = {
 	login: async ({ locals, request, cookies }) => {
 		// Await the formdata
 		const formData = Object.fromEntries(await request.formData());
-		// console.log(formData);
 
 		if (!formData.email || !formData.password) {
 			return {
@@ -20,7 +19,7 @@ export const actions = {
 		if (data.error) {
 			return fail(401, { error: 'wrong credentials' });
 		}
-
+		// console.log(data);
 		if (!data.error) {
 			cookies.set('AuthorizationToken', `Bearer ${data.plainTextToken}`, {
 				httpOnly: true,

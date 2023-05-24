@@ -6,7 +6,6 @@ export const User = localStorageStore('User', {
 	initials: '',
 	email: '',
 	permissions: '',
-	company_id: '',
 	user: {},
 	functions: [],
 	role_data: { role: 'operator' }

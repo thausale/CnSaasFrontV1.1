@@ -20,9 +20,13 @@
 	import { User } from '$lib/components/stores';
 	import { Token } from '$lib/components/stores';
 
+	import { goto } from '$app/navigation';
 	export let data;
-
 	User.set(data.user);
+	const initials = $User.firstName[0] + $User.lastName[0];
+
+	const { role } = data;
+	// console.log('Userstore', $User);
 
 	const initials = $User.firstName[0] + $User.lastName[0];
 
@@ -30,7 +34,7 @@
 </script>
 
 <Drawer>
-	<Navigation />
+	<Navigation {role} />
 </Drawer>
 
 <Toast />

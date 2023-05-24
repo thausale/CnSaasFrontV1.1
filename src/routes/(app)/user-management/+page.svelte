@@ -5,23 +5,9 @@
 	import { apiClient } from '$lib/api/UserApi.js';
 	import { Accordion, AccordionItem, ProgressBar } from '@skeletonlabs/skeleton';
 
-	let loading = true;
-	let users = '';
-
-	onMount(async () => {
-		//Destructuring variables
-		const { company_id, role } = $User;
-
-		//	Checking if user is an admin
-		if (role !== 'admin') {
-			goto('/');
-		}
-
-		//	Getting all the users from the company
-		const data = await apiClient.getUsersFromCompany(company_id);
-		users = data.users;
-		loading = false;
-	});
+	let loading = false;
+	export let data;
+	const { users } = data;
 </script>
 
 <!-- // TODO: UsersAccordion component, with a loading prop -->
@@ -41,7 +27,7 @@
 							<li>first name: {user.firstName}</li>
 							<li>last name: {user.lastName}</li>
 							<li>email: {user.email}</li>
-							<li>role: {user.role_data.role}</li>
+							<li>role: {user.role_name}</li>
 						</ul>
 					</svelte:fragment>
 				</AccordionItem>

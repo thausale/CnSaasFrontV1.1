@@ -7,6 +7,10 @@ import { redirect, fail } from '@sveltejs/kit';
 export function load({ cookies }) {
 	const session = cookies.get('session');
 
+	if (!session) {
+		throw redirect(302, '/login');
+	}
+
 	try {
 		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
 		const { firstName, lastName, email, role_data, id, company_id } = payload;
@@ -14,11 +18,7 @@ export function load({ cookies }) {
 
 		return { role: payload.role_data.role, user };
 	} catch (error) {
-		return {
-			status: 401,
-			message: 'unauthorized',
-			redirect: 'login'
-		};
+		throw redirect(302, '/login');
 		//res.status(500).json({ status: 'failed', message: error.message });
 	}
 }

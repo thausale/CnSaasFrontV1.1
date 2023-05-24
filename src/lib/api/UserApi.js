@@ -37,8 +37,8 @@ class UserApi {
 		return data;
 	}
 
-	async getUsersFromCompany(company_id) {
-		const response = await fetch(`${this.baseURL}/users/company/${company_id}`, {
+	async getAllUsers() {
+		const response = await fetch(`${this.baseURL}/users`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'

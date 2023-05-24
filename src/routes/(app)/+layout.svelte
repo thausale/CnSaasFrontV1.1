@@ -7,7 +7,7 @@
 	import '../../app.postcss';
 
 	// Skeleton components
-	import { AppShell, AppBar, Avatar } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, Avatar, ProgressBar } from '@skeletonlabs/skeleton';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import { Toast, toastStore } from '@skeletonlabs/skeleton';
 
@@ -28,10 +28,9 @@
 	const { role } = data;
 	// console.log('Userstore', $User);
 
-	//TODO: re-enable redirecting
-	// if (data.status == 401) {
-	// 	goto(data.redirect);
-	// }
+	const initials = $User.firstName[0] + $User.lastName[0];
+
+	const { role } = data;
 </script>
 
 <Drawer>

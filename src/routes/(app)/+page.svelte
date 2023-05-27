@@ -2,14 +2,11 @@
 <script>
 	import { User } from '$lib/components/stores';
 
-	import SSE from '$lib/components/SSE.svelte';
-
 	console.log('page.svelte', $User);
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-5">
-		<SSE />
 		<h1>Welcome {$User.firstName} !</h1>
 		<p>Start by exploring:</p>
 		<ul>

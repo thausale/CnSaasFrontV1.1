@@ -1,5 +1,6 @@
 <script>
 	import { drawerStore } from '@skeletonlabs/skeleton';
+	import { notificationCount } from '$lib/stores/notifications';
 
 	function drawerClose() {
 		drawerStore.close();
@@ -13,7 +14,7 @@
 	<ul>
 		<li>
 			<a href="/elements/lists" on:click={drawerClose}>
-				<span class="badge bg-primary-500">10</span>
+				<span class="badge bg-primary-500">{$notificationCount}</span>
 				<span class="flex-auto">Notifications</span>
 			</a>
 		</li>

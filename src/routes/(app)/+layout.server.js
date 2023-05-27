@@ -15,7 +15,6 @@ export function load({ cookies }) {
 		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
 		const { firstName, lastName, email, role_data, id } = payload;
 		const user = { firstName, lastName, email, id, role: role_data.name };
-
 		return { role: payload.role_data.name, user };
 	} catch (error) {
 		// throw redirect(302, '/login');

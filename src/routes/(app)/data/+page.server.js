@@ -2,6 +2,7 @@ import { DataApi } from '$lib/api/DataApi.js';
 import { fail, redirect } from '@sveltejs/kit';
 import jwt from 'jsonwebtoken';
 import { PRIVATE_SIGNATURE } from '$env/static/private';
+import { serverEventHandler } from '$lib/helpers/serverEvents.js';
 
 export async function load({ cookies, depends }) {
 	// Get the session cookie
@@ -52,7 +53,9 @@ export const actions = {
 			const { id } = payload;
 			const { batch, name, ...rest } = formData;
 			const data = await DataApi.post(batch, name, rest, id);
-			console.log(data);
+
+			// Add a notification to all online users
+			serverEventHandler.addNotification();
 			return { status: data.status, message: 'Data created! ' };
 		} catch (error) {
 			if ((error.name = 'TokenExpiredError')) {

@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { incrementNotificationCount } from '$lib/stores/notifications';
 
 	let message = '';
 
@@ -7,7 +8,9 @@
 		const eventSource = new EventSource('http://127.0.0.1:3000/sse');
 
 		eventSource.addEventListener('message', (event) => {
+			console.log(event);
 			message = event.data;
+			incrementNotificationCount();
 		});
 
 		return () => {
@@ -16,4 +19,4 @@
 	});
 </script>
 
-<h1>{message}</h1>
+<!-- <h1>{message}</h1> -->

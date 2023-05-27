@@ -1,9 +1,9 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { DataApi } from '$lib/api/DataApi';
+	import { serverEventHandler } from '$lib/helpers/serverEvents';
 
 	export let form;
-	// $: console.log('form', form);
 
 	let name = 'test';
 	let batch = 'ml-23-158';
@@ -12,25 +12,11 @@
 	let turbidity = '12';
 
 	import { focusTrap } from '@skeletonlabs/skeleton';
-
-	async function handleSubmit() {
-		const beerData = {
-			name,
-			alcohol,
-			ebc: EBC,
-			turbidity
-		};
-
-		console.log(beerData);
-		const data = await DataApi.post(beerData);
-		console.log(data); // Send the beer data to the server or perform any desired actions
-		// For this example, we're simply logging the data
-	}
 </script>
 
 <main>
 	<h1>Beer Form</h1>
-	<form class="w-full" use:enhance method="POST">
+	<form class="w-full" use:enhance use:focusTrap method="POST">
 		{#if form?.error}
 			<p class="error" transition:blur>{form.error}</p>
 		{:else}

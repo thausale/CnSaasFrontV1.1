@@ -5,7 +5,7 @@ class dataHandler {
 
 	async post(batch, name, data, id) {
 		const body = { batch, item: name, data, last_edited_by: id, created_by: id };
-		console.log(body);
+		// console.log(body);
 		const response = await fetch(`${this.baseURL}`, {
 			method: 'POST',
 			body: JSON.stringify(body),

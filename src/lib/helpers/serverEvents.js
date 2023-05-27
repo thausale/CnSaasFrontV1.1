@@ -6,7 +6,7 @@ class ServerEvents {
 	async addNotification() {
 		try {
 			const response = await axios.post('http://localhost:3000/increment-notification');
-			console.log('Notification sent successfully', response);
+			console.log('Notification sent successfully');
 		} catch (error) {
 			console.error('Error sending notification:', error);
 		}

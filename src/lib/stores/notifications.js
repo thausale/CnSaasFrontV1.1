@@ -1,9 +1,14 @@
 import { writable } from 'svelte/store';
 
-// Create a writable store for the notification count
-export const notificationCount = writable(0);
+function createNotifications() {
+	const { subscribe, set, update } = writable(0);
 
-// Function to update the notification count
-export function incrementNotificationCount() {
-	notificationCount.update((count) => count + 1);
+	return {
+		subscribe,
+		increment: () => update((n) => n + 1),
+		decrement: () => update((n) => n - 1),
+		reset: () => set(0)
+	};
 }
+
+export const notifications = createNotifications();

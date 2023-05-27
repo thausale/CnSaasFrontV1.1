@@ -15,6 +15,7 @@
 
 	let searchTerm = [];
 
+	//  Filters the users data according to searchterms from the input field
 	$: filteredUsers =
 		searchTerm.length > 0
 			? users.filter((user) =>
@@ -28,8 +29,7 @@
 			  )
 			: users;
 
-	$: console.log(filteredUsers);
-
+	//  Makes the table layout
 	$: table = {
 		// A list of heading labels.
 		head: ['firstName', 'lastName', 'role', 'email'],

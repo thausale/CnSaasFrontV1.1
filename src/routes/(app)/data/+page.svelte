@@ -39,7 +39,7 @@
 		amounts: [10, 50]
 	};
 
-	$: console.log(page);
+	// $: console.log(page);
 
 	$: paginatedSource = tableData.slice(
 		page.offset * page.limit, // start

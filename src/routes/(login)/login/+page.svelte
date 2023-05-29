@@ -33,6 +33,13 @@
 	}
 </script>
 
+<!-- This is a Svelte component that displays a login form. The script section contains various imports
+for CSS styles, components, and stores. It also defines some variables and reactive statements for
+handling form submission and error messages. The HTML section contains the actual form markup,
+including input fields for email and password, a submit button, and conditional rendering of error
+messages and a loading spinner. The style section contains some basic CSS styling for the form and
+error messages. -->
+
 <div class="flex items-center justify-center h-screen flex-col">
 	<div class="border p-10 rounded-container-token border-primary-400 w-screen md:w-auto">
 		<h1 class="p-10">Login to cnSaas</h1>

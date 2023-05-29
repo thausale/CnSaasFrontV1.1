@@ -48,14 +48,13 @@ export const actions = {
 		const session = cookies.get('session');
 
 		try {
-			const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
-
-			const { id } = payload;
+			const { id, firstName, lastName } = locals.user;
 			const { batch, name, ...rest } = formData;
 			const data = await DataApi.post(batch, name, rest, id);
 
 			// Add a notification to all online users
-			serverEventHandler.addNotification();
+			const message = `new data has been added by ${firstName} ${lastName}`;
+			serverEventHandler.addNotification(message, 'operator');
 			return { status: data.status, message: 'Data created! ' };
 		} catch (error) {
 			if ((error.name = 'TokenExpiredError')) {

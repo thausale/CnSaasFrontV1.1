@@ -3,6 +3,7 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 let clients = [];
 
@@ -19,13 +20,16 @@ app.get('/sse', (req, res) => {
 	});
 });
 
-app.post('/increment-notification', (req, res) => {
+app.post('/notification', (req, res) => {
+	const { target, message } = req.body;
+	const data = JSON.stringify({ target, message });
+
 	clients.forEach((client) => {
-		client.write(`event: notification.increment\n`);
-		client.write(`data: "hello world"\n\n`);
+		client.write(`event: notification\n`);
+		client.write(`data: ${data}\n\n`);
 	});
 
-	res.status(200).send('Notifications sent');
+	res.status(200).send({ message, target });
 });
 
 app.listen(3000, () => {

@@ -31,7 +31,7 @@
 	const { role } = data;
 </script>
 
-<SSE />
+<SSE {role} />
 
 <Drawer>
 	<Navigation {role} />

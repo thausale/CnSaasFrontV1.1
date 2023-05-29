@@ -3,9 +3,9 @@ import axios from 'axios';
 class ServerEvents {
 	constructor() {}
 
-	async addNotification() {
+	async addNotification(message, target) {
 		try {
-			const response = await axios.post('http://localhost:3000/increment-notification');
+			const response = await axios.post('http://localhost:3000/notification', { message, target });
 			console.log('Notification sent successfully');
 		} catch (error) {
 			console.error('Error sending notification:', error);

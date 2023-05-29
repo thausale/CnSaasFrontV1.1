@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { notifications } from '$lib/stores/notifications';
+	export let role;
 
 	let message = '';
 	$: console.log(message);
@@ -18,13 +19,17 @@
 		});
 
 		// If you give an event you have to listen for it
-		eventSource.addEventListener('notification.increment', (event) => {
-			console.log(event);
-
+		eventSource.addEventListener('notification', (event) => {
 			const eventData = JSON.parse(event.data);
-			console.log(eventData);
+			const { target } = eventData;
+			console.log(target);
+
+			if (target === role || target == '*') {
+				notifications.increment();
+				console.log($notifications);
+			}
+
 			// message = event.data;
-			notifications.increment();
 		});
 
 		return () => {

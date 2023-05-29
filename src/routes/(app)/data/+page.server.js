@@ -44,26 +44,20 @@ export const actions = {
 			return { error: 'Batch is needed' };
 		}
 
-		//Get the session jwt from the cookies
-		const session = cookies.get('session');
-
 		try {
+			// Extract user details from locals
 			const { id, firstName, lastName } = locals.user;
+			// Extract batch and name from formData, and store the rest in the 'rest' variable
 			const { batch, name, ...rest } = formData;
+			// Call the DataApi.post method with the extracted data and user id
 			const data = await DataApi.post(batch, name, rest, id);
-
 			// Add a notification to all online users
 			const message = `new data has been added by ${firstName} ${lastName}`;
 			serverEventHandler.addNotification(message, 'operator');
+			// Return a success message with the status and a message
 			return { status: data.status, message: 'Data created! ' };
 		} catch (error) {
-			if ((error.name = 'TokenExpiredError')) {
-				throw redirect(302, '/login');
-			} else {
-				console.log('token verification failed');
-			}
+			return { error: 'something went wrong' };
 		}
-
-		return { error: 'something went wrong' };
 	}
 };

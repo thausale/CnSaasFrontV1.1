@@ -28,7 +28,7 @@
 	let password = 'password';
 	let loading = false;
 
-	if (form?.error) {
+	$: if (form?.error) {
 		loading = false;
 	}
 </script>

@@ -6,23 +6,16 @@ import { serverEventHandler } from '$lib/helpers/serverEvents.js';
 
 export async function load({ cookies, depends }) {
 	// Get the session cookie
-	const session = cookies.get('session');
 
 	try {
 		// Verify the session cookie
-		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
 
 		// Get the data from the server
 		const data = await DataApi.getData();
 
 		return data;
 	} catch (error) {
-		if ((error.name = 'TokenExpiredError')) {
-			// Redirect to login if token is expired
-			throw redirect(302, '/login');
-		} else {
-			console.log('token verification failed');
-		}
+		console.log(error);
 	}
 
 	// The name for this load function to use in invalidating
@@ -44,27 +37,20 @@ export const actions = {
 			return { error: 'Batch is needed' };
 		}
 
-		//Get the session jwt from the cookies
-		const session = cookies.get('session');
-
 		try {
-			const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
-
-			const { id } = payload;
+			// Extract user details from locals
+			const { id, firstName, lastName } = locals.user;
+			// Extract batch and name from formData, and store the rest in the 'rest' variable
 			const { batch, name, ...rest } = formData;
+			// Call the DataApi.post method with the extracted data and user id
 			const data = await DataApi.post(batch, name, rest, id);
-
 			// Add a notification to all online users
-			serverEventHandler.addNotification();
+			const message = `new data has been added by ${firstName} ${lastName}`;
+			serverEventHandler.addNotification(message, 'operator');
+			// Return a success message with the status and a message
 			return { status: data.status, message: 'Data created! ' };
 		} catch (error) {
-			if ((error.name = 'TokenExpiredError')) {
-				throw redirect(302, '/login');
-			} else {
-				console.log('token verification failed');
-			}
+			return { error: 'something went wrong' };
 		}
-
-		return { error: 'something went wrong' };
 	}
 };

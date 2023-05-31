@@ -1,3 +1,5 @@
+import { PUBLIC_URI } from '$env/static/public';
+
 class dataHandler {
 	constructor(baseURL) {
 		this.baseURL = baseURL;
@@ -24,4 +26,4 @@ class dataHandler {
 	}
 }
 
-export const DataApi = new dataHandler('http://localhost/api/data');
+export const DataApi = new dataHandler(`${PUBLIC_URI}/data`);

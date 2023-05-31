@@ -59,19 +59,6 @@
 	};
 
 	let tabSet = 0;
-
-	// Check for form changes, if status 201 shoot toaster and invalidate
-	// The load function from this page.server.js
-	$: if (form?.status === 201) {
-		const toastSettings = {
-			message: form.message,
-			timeout: 3000,
-			background: 'variant-filled-success'
-		};
-		toastStore.trigger(toastSettings);
-
-		invalidate('getData');
-	}
 </script>
 
 <h1>Data page</h1>

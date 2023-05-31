@@ -6,23 +6,16 @@ import { serverEventHandler } from '$lib/helpers/serverEvents.js';
 
 export async function load({ cookies, depends }) {
 	// Get the session cookie
-	const session = cookies.get('session');
 
 	try {
 		// Verify the session cookie
-		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
 
 		// Get the data from the server
 		const data = await DataApi.getData();
 
 		return data;
 	} catch (error) {
-		if ((error.name = 'TokenExpiredError')) {
-			// Redirect to login if token is expired
-			throw redirect(302, '/login');
-		} else {
-			console.log('token verification failed');
-		}
+		console.log(error);
 	}
 
 	// The name for this load function to use in invalidating

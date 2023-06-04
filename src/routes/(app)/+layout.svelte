@@ -20,8 +20,8 @@
 
 	//Stores
 	import { User } from '$lib/components/stores';
-	import { Token } from '$lib/components/stores';
-	import { goto } from '$app/navigation';
+	// import { Token } from '$lib/components/stores';
+	// import { goto } from '$app/navigation';
 	export let data;
 
 	User.set(data.user);

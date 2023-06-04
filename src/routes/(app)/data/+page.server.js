@@ -3,6 +3,8 @@ import { fail, redirect } from '@sveltejs/kit';
 import jwt from 'jsonwebtoken';
 import { PRIVATE_SIGNATURE } from '$env/static/private';
 import { serverEventHandler } from '$lib/helpers/serverEvents.js';
+import { NotificationsController } from '$lib/api/NotificationsController.js';
+import { invalidate } from '$app/navigation';
 
 export async function load({ cookies, depends }) {
 	// Get the session cookie
@@ -44,12 +46,19 @@ export const actions = {
 			const { batch, name, ...rest } = formData;
 			// Call the DataApi.post method with the extracted data and user id
 			const data = await DataApi.post(batch, name, rest, id);
+			if (data.status != 201) {
+				return { error: 'something wrong' };
+			}
 			// Add a notification to all online users
 			const message = `new data has been added by ${firstName} ${lastName}`;
-			serverEventHandler.addNotification(message, 'operator');
+			console.log(message);
+
+			const serverResponse = await NotificationsController.postNotification('1', message);
+
 			// Return a success message with the status and a message
 			return { status: data.status, message: 'Data created! ' };
 		} catch (error) {
+			console.log(error);
 			return { error: 'something went wrong' };
 		}
 	}

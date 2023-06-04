@@ -13,7 +13,7 @@
 	<!-- (optionally you can provide a label here) -->
 	<ul>
 		<li>
-			<a href="/elements/lists" on:click={drawerClose}>
+			<a href="/notifications" on:click={drawerClose}>
 				<span class="badge bg-primary-500">{$notifications}</span>
 				<span class="flex-auto">Notifications</span>
 			</a>

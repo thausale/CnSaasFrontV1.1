@@ -42,6 +42,7 @@ export const actions = {
 				maxAge: 60 * 8
 			});
 			const payload = data.user;
+			// console.log('payload on login page.server', payload);
 			const authToken = jwt.sign({ payload }, PRIVATE_SIGNATURE, { expiresIn: '8h' });
 			cookies.set('session', authToken, { httpOnly: true, maxAxe: 60 * 60 * 8 });
 			throw redirect(302, '/');

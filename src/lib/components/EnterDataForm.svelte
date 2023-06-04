@@ -4,10 +4,11 @@
 	import { serverEventHandler } from '$lib/helpers/serverEvents';
 	import { invalidate } from '$app/navigation';
 	import { toastStore, ProgressRadial } from '@skeletonlabs/skeleton';
+	import { onDestroy } from 'svelte';
 
 	export let form;
 
-	$: console.log(form);
+	$: console.log('form in enterDataForm', form);
 	let name = 'test';
 	let batch = 'ml-23-158';
 	let alcohol = '3.9';
@@ -15,6 +16,7 @@
 	let turbidity = '12';
 
 	let loading = false;
+	$: console.log(loading);
 
 	import { focusTrap } from '@skeletonlabs/skeleton';
 
@@ -22,7 +24,7 @@
 		loading = true;
 	};
 
-	$: if (form?.status === 400) {
+	$: if (form?.status === 201) {
 		const toastSettings = {
 			message: form.message,
 			timeout: 3000,
@@ -34,9 +36,13 @@
 		loading = false;
 
 		invalidate('getData');
-	} else {
+	} else if (form?.error) {
 		loading = false;
 	}
+
+	onDestroy(() => {
+		form.status = undefined;
+	});
 </script>
 
 <main>

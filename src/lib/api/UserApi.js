@@ -2,7 +2,7 @@ import { User } from '$lib/components/stores';
 import { get } from 'svelte/store';
 import { PUBLIC_URI } from '$env/static/public';
 
-class UserApi {
+class UserHandler {
 	constructor(baseURL) {
 		this.baseURL = baseURL;
 	}
@@ -68,4 +68,4 @@ class UserApi {
 	}
 }
 
-export const apiClient = new UserApi(PUBLIC_URI);
+export const UserApi = new UserHandler(PUBLIC_URI);

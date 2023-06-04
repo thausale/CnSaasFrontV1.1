@@ -6,6 +6,11 @@
 		drawerStore.close();
 	}
 
+	function handleNotificationsClick() {
+		notifications.reset();
+		drawerStore.close();
+	}
+
 	export let role;
 </script>
 
@@ -13,7 +18,7 @@
 	<!-- (optionally you can provide a label here) -->
 	<ul>
 		<li>
-			<a href="/notifications" on:click={drawerClose}>
+			<a href="/notifications" on:click={handleNotificationsClick}>
 				<span class="badge bg-primary-500">{$notifications}</span>
 				<span class="flex-auto">Notifications</span>
 			</a>

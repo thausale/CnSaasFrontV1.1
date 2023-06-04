@@ -22,13 +22,15 @@
 		loading = true;
 	};
 
-	$: if (form?.status === 201) {
+	$: if (form?.status === 400) {
 		const toastSettings = {
 			message: form.message,
 			timeout: 3000,
 			background: 'variant-filled-success'
 		};
-		toastStore.trigger(toastSettings);
+		if (loading) {
+			toastStore.trigger(toastSettings);
+		}
 		loading = false;
 
 		invalidate('getData');

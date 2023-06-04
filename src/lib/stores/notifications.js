@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
+import { localStorageStore } from '@skeletonlabs/skeleton';
 
 function createNotifications() {
-	const { subscribe, set, update } = writable(0);
+	const { subscribe, set, update } = localStorageStore('notifications', 0);
 
 	return {
 		subscribe,

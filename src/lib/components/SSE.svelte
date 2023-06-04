@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { notifications } from '$lib/stores/notifications';
+	import { invalidate } from '$app/navigation';
 	export let role;
 
 	let message = '';
@@ -26,11 +27,12 @@
 		eventSource.addEventListener('notification', (event) => {
 			const eventData = JSON.parse(event.data);
 			const { target } = eventData;
-			console.log(target);
+			// console.log('target', target);
 
-			if (target === role || target == '*') {
+			if (target === role || target == '1') {
 				notifications.increment();
-				console.log($notifications);
+				// console.log($notifications);
+				invalidate('notification');
 			}
 
 			// message = event.data;

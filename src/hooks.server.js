@@ -20,8 +20,16 @@ export const handle = async ({ event, resolve }) => {
 
 	try {
 		const { payload } = jwt.verify(session, PRIVATE_SIGNATURE);
-		const { firstName, lastName, email, role_data, id } = payload;
-		event.locals.user = { firstName, lastName, email, id, role: role_data.name };
+		const { firstName, lastName, email, role_data, id, role_id } = payload;
+		// console.log('role_data', role_data);
+		event.locals.user = {
+			firstName,
+			lastName,
+			email,
+			id,
+			role: role_data.name,
+			role_id
+		};
 		event.locals.role = role_data.name;
 		return resolve(event);
 	} catch (error) {

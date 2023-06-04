@@ -1,4 +1,4 @@
-import { apiClient } from '$lib/api/UserApi.js';
+import { UserApi } from '$lib/api/UserApi.js';
 import { fail, redirect } from '@sveltejs/kit';
 import jwt from 'jsonwebtoken';
 import { PRIVATE_SIGNATURE } from '$env/static/private';
@@ -21,11 +21,11 @@ export const actions = {
 			};
 		}
 
-		/* This code is making a request to the `login` method of an API client (`apiClient`) and passing in
+		/* This code is making a request to the `login` method of an API client (`UserApi`) and passing in
 	the `formData` object as a parameter. The response from the API is stored in the `data` variable.
 	If the `data` object has an `error` property, it returns a 401 HTTP error response with an error
 	message. */
-		const data = await apiClient.login(formData);
+		const data = await UserApi.login(formData);
 		if (data.error) {
 			return fail(401, { error: 'wrong credentials' });
 		}

@@ -2,7 +2,7 @@
 	// import { goto } from '$app/navigation';
 	import { User } from '$lib/components/stores.js';
 	import { onMount } from 'svelte';
-	import { apiClient } from '$lib/api/UserApi.js';
+	import { UserApi } from '$lib/api/UserApi.js';
 	import { Accordion, AccordionItem, ProgressBar, InputChip } from '@skeletonlabs/skeleton';
 
 	let loading = false;

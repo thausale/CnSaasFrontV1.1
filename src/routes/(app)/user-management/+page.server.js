@@ -1,7 +1,7 @@
-import { apiClient } from '$lib/api/UserApi.js';
+import { UserApi } from '$lib/api/UserApi.js';
 
 export async function load({ cookies }) {
-	const data = await apiClient.getAllUsers();
+	const data = await UserApi.getAllUsers();
 	// console.log(data);
 	// const { users } = data;
 	// console.log(users);

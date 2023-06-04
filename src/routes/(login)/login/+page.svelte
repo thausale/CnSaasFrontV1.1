@@ -18,7 +18,7 @@
 	import { User } from '$lib/components/stores';
 	import { Token } from '$lib/components/stores';
 	import { get } from 'svelte/store';
-	import { apiClient } from '$lib/api/UserApi';
+	import { UserApi } from '$lib/api/UserApi';
 
 	import { enhance } from '$app/forms';
 

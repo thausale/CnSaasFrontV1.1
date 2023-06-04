@@ -5,7 +5,7 @@
 
 	// Stores & Classes
 	import { User } from '$lib/components/stores';
-	import { apiClient } from '$lib/api/UserApi';
+	import { UserApi } from '$lib/api/UserApi';
 
 	// Components
 	import InPlaceEdit from '$lib/components/inPlaceEdit.svelte';
@@ -27,7 +27,7 @@
 
 			(async function () {
 				try {
-					const data = await apiClient.editUser(field, newValue);
+					const data = await UserApi.editUser(field, newValue);
 					console.log(data);
 					loading = false;
 					toastStore.trigger(toastSettings);

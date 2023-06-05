@@ -1,8 +1,0 @@
-{
-    "routes": [
-      { "src": "/sse", "dest": "server.js" },
-      { "src": "/notification", "methods": ["POST"], "dest": "server.js" },
-      { "src": "/(.*)", "dest": "/__svelte__/build/index.html" }
-    ]
-  }
-  

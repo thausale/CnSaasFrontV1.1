@@ -16,7 +16,8 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Clock from '$lib/components/Clock.svelte';
 	import HamburgerButton from '$lib/components/HamburgerButton.svelte';
-	import SSE from '$lib/components/SSE.svelte';
+	// import SSE from '$lib/components/SSE.svelte';
+	import PusherComponent from '$lib/components/PusherComponent.svelte';
 
 	//Stores
 	import { User } from '$lib/components/stores';
@@ -31,7 +32,7 @@
 	const { role } = data;
 </script>
 
-<SSE {role} />
+<PusherComponent />
 
 <Drawer>
 	<Navigation {role} />

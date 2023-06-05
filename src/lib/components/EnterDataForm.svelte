@@ -41,7 +41,7 @@
 	}
 
 	onDestroy(() => {
-		if (form.status) {
+		if (form) {
 			form.status = undefined;
 		}
 	});

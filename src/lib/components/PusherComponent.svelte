@@ -20,7 +20,6 @@
 			const { message, target } = event;
 			if (target == user.role_id) {
 				console.log('ids match');
-				serverEventHandler.postNotification(message, target);
 
 				notifications.increment();
 			}

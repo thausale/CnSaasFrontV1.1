@@ -5,7 +5,7 @@
 	import { invalidate } from '$app/navigation';
 	import { serverEventHandler } from '$lib/helpers/serverEvents';
 	import { PUBLIC_PUSHER_KEY } from '$env/static/public';
-	// Pusher.logToConsole = true;
+	Pusher.logToConsole = true;
 
 	const pusher = new Pusher(PUBLIC_PUSHER_KEY, {
 		cluster: 'eu'

@@ -28,4 +28,8 @@
 			console.log('message', message, 'target', target);
 		});
 	});
+
+	onDestroy(() => {
+		pusher.disconnect();
+	});
 </script>

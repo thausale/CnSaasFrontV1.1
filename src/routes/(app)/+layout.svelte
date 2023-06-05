@@ -29,10 +29,10 @@
 
 	const initials = $User.firstName[0] + $User.lastName[0];
 
-	const { role } = data;
+	const { role, user } = data;
 </script>
 
-<PusherComponent />
+<PusherComponent {user} />
 
 <Drawer>
 	<Navigation {role} />

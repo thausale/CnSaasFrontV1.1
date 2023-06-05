@@ -5,6 +5,7 @@
 	import { invalidate } from '$app/navigation';
 	import { serverEventHandler } from '$lib/helpers/serverEvents';
 	import { PUBLIC_PUSHER_KEY } from '$env/static/public';
+	export let user;
 	Pusher.logToConsole = true;
 
 	const pusher = new Pusher(PUBLIC_PUSHER_KEY, {
@@ -15,7 +16,7 @@
 	channel.bind('notification', function (event) {
 		// console.log(JSON.stringify(event));
 		const { message, target } = event;
-		if (target == $User.role_id) {
+		if (target == user.role_id) {
 			console.log('ids match');
 			serverEventHandler.postNotification(message, target);
 

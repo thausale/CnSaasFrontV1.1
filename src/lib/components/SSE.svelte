@@ -2,13 +2,14 @@
 	import { onMount } from 'svelte';
 	import { notifications } from '$lib/stores/notifications';
 	import { invalidate } from '$app/navigation';
+	import { serverAddress } from '$lib/config.js';
 	export let role;
 
 	let message = '';
 	$: console.log(message);
 
 	onMount(() => {
-		const eventSource = new EventSource('http://127.0.0.1:3000/sse');
+		const eventSource = new EventSource(`${serverAddress}/sse`);
 
 		// Message is default when you use client.write and dont give an event
 		eventSource.addEventListener('message', (event) => {

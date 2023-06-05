@@ -5,24 +5,27 @@
 	import { invalidate } from '$app/navigation';
 	import { serverEventHandler } from '$lib/helpers/serverEvents';
 	import { PUBLIC_PUSHER_KEY } from '$env/static/public';
+	import { onDestroy, onMount } from 'svelte';
 	export let user;
 	Pusher.logToConsole = true;
 
-	const pusher = new Pusher(PUBLIC_PUSHER_KEY, {
-		cluster: 'eu'
-	});
+	onMount(() => {
+		const pusher = new Pusher(PUBLIC_PUSHER_KEY, {
+			cluster: 'eu'
+		});
 
-	const channel = pusher.subscribe('default');
-	channel.bind('notification', function (event) {
-		// console.log(JSON.stringify(event));
-		const { message, target } = event;
-		if (target == user.role_id) {
-			console.log('ids match');
-			serverEventHandler.postNotification(message, target);
+		const channel = pusher.subscribe('default');
+		channel.bind('notification', function (event) {
+			// console.log(JSON.stringify(event));
+			const { message, target } = event;
+			if (target == user.role_id) {
+				console.log('ids match');
+				serverEventHandler.postNotification(message, target);
 
-			notifications.increment();
-		}
+				notifications.increment();
+			}
 
-		console.log('message', message, 'target', target);
+			console.log('message', message, 'target', target);
+		});
 	});
 </script>

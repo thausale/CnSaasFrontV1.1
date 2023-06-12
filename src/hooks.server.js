@@ -33,8 +33,11 @@ export const handle = async ({ event, resolve }) => {
 		event.locals.role = role_data.name;
 		return resolve(event);
 	} catch (error) {
-		// throw redirect(302, '/login');
-		console.log(error);
-		return { error: 'unverified' };
+		if (error.name === 'TokenExpiredError') {
+			throw redirect(302, '/login');
+		} else {
+			console.log(error);
+			return { error: 'something went wrong' };
+		}
 	}
 };

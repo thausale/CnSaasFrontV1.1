@@ -3,14 +3,17 @@
 	// import { onMount } from 'svelte';
 	import UserManagement from '$lib/components/UserManagement.svelte';
 	import { ProgressBar, InputChip, modalStore } from '@skeletonlabs/skeleton';
+	import { Table } from '@skeletonlabs/skeleton';
+	import { tableMapperValues } from '@skeletonlabs/skeleton';
 
 	let loading = false;
 	export let data;
-	const { users, roles } = data;
-	console.log(roles);
+	export let form;
 
-	import { Table } from '@skeletonlabs/skeleton';
-	import { tableMapperValues } from '@skeletonlabs/skeleton';
+	$: users = data.users;
+	$: roles = data.roles;
+
+	// console.log(roles);
 
 	let searchTerm = [];
 
@@ -41,10 +44,10 @@
 	};
 
 	function selectionHandler(e) {
+		form = null;
 		const modalComponent = {
 			ref: UserManagement,
-			props: { User: e.detail, roles },
-			slot: '<p>Skeleton</p>'
+			props: { User: e.detail, roles }
 		};
 		const modal = {
 			type: 'component',

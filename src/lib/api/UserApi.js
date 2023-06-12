@@ -50,13 +50,11 @@ class UserHandler {
 		return data;
 	}
 
-	async editUser(field, value) {
-		const id = this.getId();
-
-		const obj = { field, value };
+	async editUser(body, id) {
+		console.log(JSON.stringify(body));
 		const response = await fetch(`${this.baseURL}/edit-user/${id}`, {
-			method: 'POST',
-			body: JSON.stringify(obj),
+			method: 'PATCH',
+			body: JSON.stringify(body),
 			headers: {
 				'Content-Type': 'application/json'
 			}

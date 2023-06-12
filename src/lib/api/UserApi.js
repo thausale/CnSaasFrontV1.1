@@ -38,7 +38,7 @@ class UserHandler {
 		return data;
 	}
 
-	async getAllUsers() {
+	async getAllUsers(fetch) {
 		const response = await fetch(`${this.baseURL}/users`, {
 			method: 'GET',
 			headers: {

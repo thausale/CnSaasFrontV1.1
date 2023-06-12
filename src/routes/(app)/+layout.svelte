@@ -7,7 +7,7 @@
 	import '../../app.postcss';
 
 	// Skeleton components
-	import { AppShell, AppBar, Avatar, ProgressBar } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, Avatar, ProgressBar, Modal } from '@skeletonlabs/skeleton';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import { Toast, toastStore } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
@@ -39,6 +39,7 @@
 </Drawer>
 
 <Toast />
+<Modal />
 
 <AppShell slotSidebarLeft="w-0 md:w-44 bg-surface-500/10 ">
 	<svelte:fragment slot="header">

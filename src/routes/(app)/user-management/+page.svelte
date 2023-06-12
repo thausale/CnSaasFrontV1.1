@@ -1,25 +1,24 @@
 <script>
 	// import { goto } from '$app/navigation';
-	import { User } from '$lib/components/stores.js';
-	import { onMount } from 'svelte';
-	import { UserApi } from '$lib/api/UserApi.js';
-	import { Accordion, AccordionItem, ProgressBar, InputChip } from '@skeletonlabs/skeleton';
+	// import { onMount } from 'svelte';
+	import UserManagement from '$lib/components/UserManagement.svelte';
+	import { ProgressBar, InputChip, modalStore } from '@skeletonlabs/skeleton';
 
 	let loading = false;
 	export let data;
-	const { users } = data;
-	console.log(users);
+	const { users, roles } = data;
+	console.log(roles);
 
 	import { Table } from '@skeletonlabs/skeleton';
 	import { tableMapperValues } from '@skeletonlabs/skeleton';
 
 	let searchTerm = [];
 
-	//  Filters the users data according to searchterms from the input field
+	//  Filters the users data according to searchTerms from the input field
 	$: filteredUsers =
 		searchTerm.length > 0
 			? users.filter((user) =>
-					searchTerm.some(
+					searchTerm.every(
 						(term) =>
 							user.firstName.toLowerCase().includes(term.toLowerCase()) ||
 							user.lastName.toLowerCase().includes(term.toLowerCase()) ||
@@ -42,7 +41,16 @@
 	};
 
 	function selectionHandler(e) {
-		console.log(e.detail);
+		const modalComponent = {
+			ref: UserManagement,
+			props: { User: e.detail, roles },
+			slot: '<p>Skeleton</p>'
+		};
+		const modal = {
+			type: 'component',
+			component: modalComponent
+		};
+		modalStore.trigger(modal);
 	}
 </script>
 

@@ -6,7 +6,7 @@
 	import { PUBLIC_PUSHER_KEY } from '$env/static/public';
 	import { onDestroy, onMount } from 'svelte';
 	export let user;
-	Pusher.logToConsole = true;
+	// Pusher.logToConsole = true;
 
 	let pusher;
 

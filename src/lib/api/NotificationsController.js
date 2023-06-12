@@ -1,5 +1,5 @@
 import { PUBLIC_URI } from '$env/static/public';
-import { serverEventHandler } from '$lib/helpers/serverEvents';
+// import { serverEventHandler } from '$lib/helpers/serverEvents';
 import axios from 'axios';
 
 class NotificationsHandler {

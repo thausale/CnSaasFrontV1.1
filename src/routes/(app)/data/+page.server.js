@@ -2,7 +2,7 @@ import { DataApi } from '$lib/api/DataApi.js';
 import { fail, redirect } from '@sveltejs/kit';
 import jwt from 'jsonwebtoken';
 import { PRIVATE_SIGNATURE } from '$env/static/private';
-import { serverEventHandler } from '$lib/helpers/serverEvents.js';
+// import { serverEventHandler } from '$lib/helpers/serverEvents.js';
 import { NotificationsController } from '$lib/api/NotificationsController.js';
 import { invalidate } from '$app/navigation';
 

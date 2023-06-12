@@ -3,11 +3,12 @@
 	import { User } from '$lib/components/stores';
 	import { notifications } from '$lib/stores/notifications';
 	import { invalidate } from '$app/navigation';
-	import { serverEventHandler } from '$lib/helpers/serverEvents';
 	import { PUBLIC_PUSHER_KEY } from '$env/static/public';
 	import { onDestroy, onMount } from 'svelte';
 	export let user;
 	Pusher.logToConsole = true;
+
+	let pusher;
 
 	onMount(() => {
 		const pusher = new Pusher(PUBLIC_PUSHER_KEY, {
@@ -29,6 +30,8 @@
 	});
 
 	onDestroy(() => {
-		pusher.disconnect();
+		if (pusher) {
+			pusher.disconnect();
+		}
 	});
 </script>

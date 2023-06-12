@@ -1,7 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { DataApi } from '$lib/api/DataApi';
-	import { serverEventHandler } from '$lib/helpers/serverEvents';
 	import { invalidate } from '$app/navigation';
 	import { toastStore, ProgressRadial } from '@skeletonlabs/skeleton';
 	import { onDestroy } from 'svelte';

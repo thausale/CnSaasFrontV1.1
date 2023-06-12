@@ -51,7 +51,6 @@ class UserHandler {
 	}
 
 	async editUser(body, id) {
-		console.log(JSON.stringify(body));
 		const response = await fetch(`${this.baseURL}/edit-user/${id}`, {
 			method: 'PATCH',
 			body: JSON.stringify(body),
@@ -62,6 +61,18 @@ class UserHandler {
 
 		const data = await response.json();
 		// console.log(data);
+		return data;
+	}
+
+	async deleteUser(id) {
+		const response = await fetch(`${this.baseURL}/user/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const data = await response.json();
 		return data;
 	}
 }

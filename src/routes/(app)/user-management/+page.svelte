@@ -2,7 +2,8 @@
 	// import { goto } from '$app/navigation';
 	// import { onMount } from 'svelte';
 	import UserManagement from '$lib/components/UserManagement.svelte';
-	import { ProgressBar, InputChip, modalStore } from '@skeletonlabs/skeleton';
+	import UserCreation from '$lib/components/UserCreation.svelte';
+	import { ProgressBar, InputChip, modalStore, Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import { Table } from '@skeletonlabs/skeleton';
 	import { tableMapperValues } from '@skeletonlabs/skeleton';
 
@@ -55,13 +56,29 @@
 		};
 		modalStore.trigger(modal);
 	}
+
+	$: tabSet = 0;
+	$: console.log(tabSet);
 </script>
 
-<!-- // TODO: UsersAccordion component, with a loading prop -->
-{#if loading}
-	<ProgressBar meter="variant-filled-primary" />
-{:else}
-	<!-- TODO: Add modal when clicked to edit user -->
-	<InputChip bind:value={searchTerm} name="chips" placeholder="Search users ..." class="m-4" />
-	<Table source={table} class=" p-4" interactive="true" on:selected={selectionHandler} />
-{/if}
+<TabGroup>
+	<Tab bind:group={tabSet} name="Users" value={0}>Overview</Tab>
+	<Tab bind:group={tabSet} name="New User" value={1}>Create User</Tab>
+	<svelte:fragment slot="panel">
+		{#if tabSet === 0}
+			{#if loading}
+				<ProgressBar meter="variant-filled-primary" />
+			{:else}
+				<InputChip
+					bind:value={searchTerm}
+					name="chips"
+					placeholder="Search users ..."
+					class="m-4"
+				/>
+				<Table source={table} class=" p-4" interactive="true" on:selected={selectionHandler} />
+			{/if}
+		{:else if tabSet === 1}
+			<UserCreation {roles} {tabSet} />
+		{/if}
+	</svelte:fragment>
+</TabGroup>

@@ -21,13 +21,6 @@
 		loading = true;
 
 		const body = { firstName, lastName, role_id, email };
-		console.log('body', body);
-		const filtered = Object.keys(body).reduce((result, key) => {
-			if (typeof body[key] !== 'undefined') {
-				result[key] = body[key];
-			}
-			return result;
-		}, {});
 
 		const response = await UserApi.editUser(body, id);
 
@@ -51,7 +44,7 @@
 			title: `are you sure you want to delete ${User[0]} ${User[1]} ?`,
 			response: (r) => {
 				if (r) {
-					console.log('deleting');
+					UserApi.deleteUser(id);
 				}
 			}
 		};

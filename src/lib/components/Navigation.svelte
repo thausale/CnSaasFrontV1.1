@@ -54,6 +54,12 @@
 					<span class="flex-auto">Manage users</span>
 				</a>
 			</li>
+			<li>
+				<a href="/role-management" on:click={drawerClose}>
+					<span class="badge bg-primary-500">🕵️‍♀️</span>
+					<span class="flex-auto">Manage Roles</span>
+				</a>
+			</li>
 		{/if}
 		<!-- ... -->
 	</ul>

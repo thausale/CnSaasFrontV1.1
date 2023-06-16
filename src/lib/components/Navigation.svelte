@@ -6,11 +6,6 @@
 		drawerStore.close();
 	}
 
-	function handleNotificationsClick() {
-		notifications.reset();
-		drawerStore.close();
-	}
-
 	export let role;
 </script>
 
@@ -18,7 +13,7 @@
 	<!-- (optionally you can provide a label here) -->
 	<ul>
 		<li>
-			<a href="/notifications" on:click={handleNotificationsClick}>
+			<a href="/notifications" on:click={drawerClose}>
 				<span class="badge bg-primary-500">{$notifications}</span>
 				<span class="flex-auto">Notifications</span>
 			</a>
@@ -45,6 +40,12 @@
 			<a href="/data" on:click={drawerClose}>
 				<span class="badge bg-primary-500">📖</span>
 				<span class="flex-auto">Data</span>
+			</a>
+		</li>
+		<li>
+			<a href="/transfer" on:click={drawerClose}>
+				<span class="badge bg-primary-500">📖</span>
+				<span class="flex-auto">Transfer Beer</span>
 			</a>
 		</li>
 		{#if role === 'admin'}

@@ -5,6 +5,10 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	// Most of your app wide CSS should be put in this file
 	import '../../app.postcss';
+	//  Popup stuff
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+	import { storePopup } from '@skeletonlabs/skeleton';
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
 	// Skeleton components
 	import { AppShell, AppBar, Avatar, ProgressBar, Modal } from '@skeletonlabs/skeleton';

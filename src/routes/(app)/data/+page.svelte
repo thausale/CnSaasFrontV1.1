@@ -70,7 +70,7 @@
 
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
-			<Table source={table} class=" p-4" interactive="true" />
+			<Table source={table} class="p-4" interactive="true" />
 			<Paginator bind:settings={page} class="px-4" />
 		{:else if tabSet === 1}
 			<EnterDataForm {form} />

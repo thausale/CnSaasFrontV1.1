@@ -70,7 +70,7 @@ error messages. -->
 				<span>Password</span>
 				<input
 					class="input"
-					type="text"
+					type="password"
 					name="password"
 					placeholder="password"
 					bind:value={password}

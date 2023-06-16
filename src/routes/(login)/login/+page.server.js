@@ -25,6 +25,7 @@ export const actions = {
 	the `formData` object as a parameter. The response from the API is stored in the `data` variable.
 	If the `data` object has an `error` property, it returns a 401 HTTP error response with an error
 	message. */
+		// TODO: finetune errors, not everytime wrong credentials
 		const data = await UserApi.login(formData);
 		if (data.error) {
 			return fail(401, { error: 'wrong credentials' });

@@ -7,11 +7,7 @@ import { NotificationsController } from '$lib/api/NotificationsController.js';
 import { invalidate } from '$app/navigation';
 
 export async function load({ cookies, depends }) {
-	// Get the session cookie
-
 	try {
-		// Verify the session cookie
-
 		// Get the data from the server
 		const data = await DataApi.getData();
 

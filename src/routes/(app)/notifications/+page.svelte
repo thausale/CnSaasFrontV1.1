@@ -1,9 +1,11 @@
 <script>
 	import { Table, tableSourceMapper, tableMapperValues, SlideToggle } from '@skeletonlabs/skeleton';
+	import { resetNotifications } from '$lib/helpers/resetNotifications.js';
+	import { onMount } from 'svelte';
 
 	export let data;
-	const { data: notifications } = data;
 	console.log(data);
+	const { data: notifications } = data;
 
 	const readableNotifications = notifications.map((notification) => {
 		const date = new Date(notification.created_at);
@@ -30,6 +32,10 @@
 		// Optional: A list of footer labels.
 		foot: ['Total', '', "<code class='code'>" + tableSource.length + '</code>']
 	};
+
+	onMount(() => {
+		resetNotifications();
+	});
 </script>
 
 <main class="p-6">

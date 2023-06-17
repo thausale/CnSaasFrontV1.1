@@ -61,19 +61,21 @@
 	let tabSet = 0;
 </script>
 
-<h1>Data page</h1>
-<TabGroup>
-	<Tab bind:group={tabSet} name="table" value={0}>Table</Tab>
-	{#if role != 'operator'}
-		<Tab bind:group={tabSet} name="enter-data" value={1}>Enter Data</Tab>
-	{/if}
-
-	<svelte:fragment slot="panel">
-		{#if tabSet === 0}
-			<Table source={table} class="p-4" interactive="true" />
-			<Paginator bind:settings={page} class="px-4" />
-		{:else if tabSet === 1}
-			<EnterDataForm {form} />
+<div class="p-6">
+	<h1>Data page</h1>
+	<TabGroup>
+		<Tab bind:group={tabSet} name="table" value={0}>Table</Tab>
+		{#if role != 'operator'}
+			<Tab bind:group={tabSet} name="enter-data" value={1}>Enter Data</Tab>
 		{/if}
-	</svelte:fragment>
-</TabGroup>
+
+		<svelte:fragment slot="panel">
+			{#if tabSet === 0}
+				<Table source={table} class="p-4" interactive="true" />
+				<Paginator bind:settings={page} class="px-4" />
+			{:else if tabSet === 1}
+				<EnterDataForm {form} />
+			{/if}
+		</svelte:fragment>
+	</TabGroup>
+</div>

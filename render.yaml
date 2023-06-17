@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: cnsaas
-    env: node
-    nodeVersion: 15.0.0
-    buildCommand: npm run build
-    startCommand: npm start

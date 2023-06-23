@@ -23,7 +23,7 @@
 	import { enhance } from '$app/forms';
 
 	export let form;
-	$: console.log('form', form);
+	// $: console.log('form', form);
 	let email = 'admin@admin';
 	let password = 'password';
 	let loading = false;

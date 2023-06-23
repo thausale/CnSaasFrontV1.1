@@ -4,10 +4,10 @@
 	// import { page } from '$app/stores';
 	// console.log('page', $page);
 	export let data;
-	console.log(data);
+	// console.log(data);
 	const entries = data.entries.data;
 	const { user } = data;
-	console.log(user);
+	// console.log(user);
 
 	let selection = '';
 	let id;
@@ -26,7 +26,7 @@
 		return acc;
 	}, {});
 
-	$: console.log(targets);
+	// $: console.log(targets);
 
 	// Function to change chip selection status from true to false and back
 	function filter(role) {
@@ -35,14 +35,14 @@
 
 	function onSelection(e) {
 		selection = e.detail.label;
-		console.log(selection);
+		// console.log(selection);
 		id = e.detail.value;
 	}
 
 	function onSubmit() {
-		console.log(selection);
+		// console.log(selection);
 		const beer = entries.filter((entry) => entry.batch == selection)[0];
-		console.log(beer);
+		// console.log(beer);
 
 		const trueTargets = Object.entries(targets)
 			.filter(([_, value]) => value === true)
@@ -52,7 +52,7 @@
 			.filter((role) => trueTargets.includes(role.name))
 			.map((role) => role.id);
 
-		console.log(roleIds);
+		// console.log(roleIds);
 
 		const beerData = JSON.stringify(beer.data);
 		const message = `${user.firstName} ${user.lastName} would like to transfer ${volume}hl of ${beer.item}. 
@@ -64,7 +64,7 @@ data: ${beerData}`;
 
 		Promise.all(promises)
 			.then(() => {
-				console.log('All notifications sent successfully.');
+				// console.log('All notifications sent successfully.');
 			})
 			.catch((error) => {
 				console.error('Failed to send notifications:', error);

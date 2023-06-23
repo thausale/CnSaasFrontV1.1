@@ -28,7 +28,7 @@
 			(async function () {
 				try {
 					const data = await UserApi.editUser(field, newValue);
-					console.log(data);
+					// console.log(data);
 					loading = false;
 					toastStore.trigger(toastSettings);
 				} catch (error) {

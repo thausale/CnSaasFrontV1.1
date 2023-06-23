@@ -26,7 +26,7 @@
 	};
 
 	function selectionHandler(e) {
-		console.log(e.detail);
+		// console.log(e.detail);
 		form = null;
 		const modalComponent = {
 			ref: RoleManagement,
@@ -40,7 +40,7 @@
 	}
 
 	$: tabSet = 0;
-	$: console.log(tabSet);
+	// $: console.log(tabSet);
 </script>
 
 <TabGroup>

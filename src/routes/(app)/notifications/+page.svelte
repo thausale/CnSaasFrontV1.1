@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 
 	export let data;
-	console.log(data);
+	// console.log(data);
 	const { data: notifications } = data;
 
 	const readableNotifications = notifications.map((notification) => {
@@ -20,7 +20,7 @@
 	let showInvisible = false;
 
 	$: tableSource = showInvisible ? readableNotifications : filteredNotifications;
-	console.log(filteredNotifications);
+	// console.log(filteredNotifications);
 
 	$: tableSimple = {
 		// A list of heading labels.

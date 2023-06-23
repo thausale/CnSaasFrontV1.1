@@ -8,7 +8,7 @@
 
 	export let roles;
 	export let tabSet;
-	console.log(tabSet);
+	// console.log(tabSet);
 	let loading = false;
 
 	let firstName;

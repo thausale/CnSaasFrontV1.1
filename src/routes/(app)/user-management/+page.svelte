@@ -58,7 +58,7 @@
 	}
 
 	$: tabSet = 0;
-	$: console.log(tabSet);
+	// $: console.log(tabSet);
 </script>
 
 <TabGroup>

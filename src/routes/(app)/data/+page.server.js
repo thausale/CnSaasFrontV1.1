@@ -47,7 +47,7 @@ export const actions = {
 			}
 			// Add a notification to all online users
 			const message = `new data has been added by ${firstName} ${lastName}`;
-			console.log(message);
+			// console.log(message);
 
 			const serverResponse = await NotificationsController.postNotification('1', message);
 

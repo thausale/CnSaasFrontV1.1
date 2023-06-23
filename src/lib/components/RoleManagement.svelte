@@ -20,7 +20,7 @@
 				if (r) {
 					// DELETE ROLE
 					const response = await RoleController.deleteRole(id);
-					console.log(response);
+					// console.log(response);
 					if (response.message) {
 						invalidate('Roles');
 						const t = {

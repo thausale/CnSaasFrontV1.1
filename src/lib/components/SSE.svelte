@@ -6,17 +6,17 @@
 	export let role;
 
 	let message = '';
-	$: console.log(message);
+	// $: console.log(message);
 
 	onMount(() => {
 		const eventSource = new EventSource(`${serverAddress}/sse`);
 
 		// Message is default when you use client.write and dont give an event
 		eventSource.addEventListener('message', (event) => {
-			console.log(event);
+			// console.log(event);
 
 			const eventData = JSON.parse(event.data);
-			console.log(eventData);
+			// console.log(eventData);
 			message = event.data;
 		});
 

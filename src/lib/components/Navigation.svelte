@@ -18,18 +18,7 @@
 				<span class="flex-auto">Notifications</span>
 			</a>
 		</li>
-		<li>
-			<a
-				href="/login"
-				on:click={() => {
-					localStorage.clear();
-					drawerClose();
-				}}
-			>
-				<span class="badge bg-primary-500">💀</span>
-				<span class="flex-auto">Logout</span>
-			</a>
-		</li>
+
 		<li>
 			<a href="/" on:click={drawerClose}>
 				<span class="badge bg-primary-500">🏠</span>
@@ -62,6 +51,19 @@
 				</a>
 			</li>
 		{/if}
+
+		<li>
+			<a
+				href="/login"
+				on:click={() => {
+					localStorage.clear();
+					drawerClose();
+				}}
+			>
+				<span class="badge bg-primary-500">💀</span>
+				<span class="flex-auto">Logout</span>
+			</a>
+		</li>
 		<!-- ... -->
 	</ul>
 </nav>

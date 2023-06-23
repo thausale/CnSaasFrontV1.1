@@ -7,7 +7,7 @@
 
 	export let form;
 
-	$: console.log('form in enterDataForm', form);
+	// $: console.log('form in enterDataForm', form);
 	let name = 'test';
 	let batch = 'ml-23-158';
 	let alcohol = '3.9';
@@ -15,7 +15,7 @@
 	let turbidity = '12';
 
 	let loading = false;
-	$: console.log(loading);
+	// $: console.log(loading);
 
 	import { focusTrap } from '@skeletonlabs/skeleton';
 

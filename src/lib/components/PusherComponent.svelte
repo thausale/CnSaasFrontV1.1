@@ -6,7 +6,7 @@
 	import { PUBLIC_PUSHER_KEY } from '$env/static/public';
 	import { onDestroy, onMount } from 'svelte';
 	export let user;
-	// Pusher.logToConsole = true;
+	Pusher.logToConsole = false;
 
 	let pusher;
 
@@ -20,12 +20,12 @@
 			// console.log(JSON.stringify(event));
 			const { message, target } = event;
 			if (target == user.role_id) {
-				console.log('ids match');
+				// console.log('ids match');
 
 				notifications.increment();
 			}
 
-			console.log('message', message, 'target', target);
+			// console.log('message', message, 'target', target);
 		});
 	});
 

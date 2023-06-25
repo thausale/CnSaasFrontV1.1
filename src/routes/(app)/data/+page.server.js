@@ -7,9 +7,11 @@ import { NotificationsController } from '$lib/api/NotificationsController.js';
 import { invalidate } from '$app/navigation';
 
 export async function load({ cookies, depends }) {
+	const authorization = cookies.get('AuthenticationToken');
+
 	try {
 		// Get the data from the server
-		const data = await DataApi.getData();
+		const data = await DataApi.getData(authorization);
 
 		return data;
 	} catch (error) {

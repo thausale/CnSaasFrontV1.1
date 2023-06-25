@@ -19,8 +19,12 @@ class dataHandler {
 		return response;
 	}
 
-	async getData() {
-		const response = await fetch(`${this.baseURL}`);
+	async getData(bearer) {
+		const response = await fetch(`${this.baseURL}`, {
+			headers: {
+				Authorization: bearer
+			}
+		});
 		const data = await response.json();
 
 		return data;

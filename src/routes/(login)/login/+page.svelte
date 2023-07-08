@@ -8,6 +8,7 @@
 
 	// // Environment variables
 	import { PUBLIC_URI } from '$env/static/public';
+	import { onMount } from 'svelte';
 
 	// // Components import
 	import { focusTrap, ProgressRadial } from '@skeletonlabs/skeleton';
@@ -31,6 +32,19 @@
 	$: if (form?.error) {
 		loading = false;
 	}
+
+	const ping = async () => {
+		fetch('http://localhost/api/ping')
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
+
+	onMount(ping);
 </script>
 
 <!-- This is a Svelte component that displays a login form. The script section contains various imports

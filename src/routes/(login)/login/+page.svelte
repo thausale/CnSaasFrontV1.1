@@ -20,6 +20,7 @@
 	import { Token } from '$lib/components/stores';
 	import { get } from 'svelte/store';
 	import { UserApi } from '$lib/api/UserApi';
+	import { DataApi } from '$lib/api/DataApi';
 
 	import { enhance } from '$app/forms';
 
@@ -33,18 +34,7 @@
 		loading = false;
 	}
 
-	const ping = async () => {
-		fetch('http://localhost/api/ping')
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	};
-
-	onMount(ping);
+	onMount(DataApi.ping);
 </script>
 
 <!-- This is a Svelte component that displays a login form. The script section contains various imports

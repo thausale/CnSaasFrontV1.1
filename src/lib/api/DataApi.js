@@ -25,6 +25,13 @@ class dataHandler {
 
 		return data;
 	}
+
+	async ping() {
+		const response = await fetch(`${PUBLIC_URI}/ping`, {});
+		const ping = await response.json();
+
+		console.log(ping);
+	}
 }
 
 export const DataApi = new dataHandler(`${PUBLIC_URI}/data`);
